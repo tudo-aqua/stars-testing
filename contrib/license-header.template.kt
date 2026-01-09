@@ -1,5 +1,5 @@
 /*
- * Copyright 2026 The STARS Coverage Significance Authors
+ * Copyright $YEAR The STARS Coverage Significance Authors
  * SPDX-License-Identifier: Apache-2.0
  *
  * Licensed under the Apache License, Version 2.0 (the "License");
@@ -15,9 +15,3 @@
  * limitations under the License.
  */
 
-rootProject.name = "stars-testing"
-
-plugins { id("org.gradle.toolchains.foojay-resolver-convention").version("1.0.0") }
-
-// Include the STARS build from the parent directory
-includeBuild("../stars")

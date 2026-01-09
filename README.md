@@ -34,13 +34,8 @@ On Windows:
 ./gradlew.bat run
 ```
 
-## What This Project Does
-
-The `Main.kt` file demonstrates the STARS v2.0 creation process by:
-
-1. Creating a simple TSC (Traffic Scenario Classifier)
-2. Building projections from the TSC
-3. Setting up TSC Evaluation with metric providers
-4. Printing information about the created structures
-
-Unlike the stars-carla-experiments project, this does not download or process experiment data files - it focuses purely on demonstrating the STARS framework setup.
+#### (Optional) Git Hooks
+If you want to use our proposed Git Hooks you can execute the following command:
+```shell
+git config --local core.hooksPath .githooks
+```
