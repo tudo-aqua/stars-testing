@@ -17,17 +17,16 @@
 
 package tools.aqua.stars.testing
 
+import kotlin.io.path.Path
 import tools.aqua.stars.core.evaluation.TSCEvaluation
 import tools.aqua.stars.core.metrics.evaluation.InvalidTSCInstancesPerTSCMetric
 import tools.aqua.stars.core.metrics.evaluation.MissedTSCInstancesPerTSCMetric
 import tools.aqua.stars.core.metrics.evaluation.ValidTSCInstancesPerTSCMetric
 import tools.aqua.stars.core.tsc.builder.*
 import tools.aqua.stars.data.av.dataclasses.*
+import tools.aqua.stars.importer.carla.loadTicks
 
 fun main() {
-  println("Starting STARS v2.0 testing...")
-
-  // Create a simple TSC (Traffic Scenario Classifier)
   val tsc =
       tsc<Actor, TickData, TickDataUnitSeconds, TickDataDifferenceSeconds> {
         all("TSCRoot") {
@@ -39,10 +38,6 @@ fun main() {
         }
       }
 
-  println("TSC created successfully!")
-  println("Building projections...")
-
-  println("Creating TSC Evaluation...")
   val evaluation =
       TSCEvaluation(
               writePlots = false,
@@ -59,7 +54,13 @@ fun main() {
                 MissedTSCInstancesPerTSCMetric())
           }
 
-  println("STARS v2.0 setup completed successfully!")
-  println(
-      "Note: To run actual evaluation, provide segments using evaluation.runEvaluation(segments)")
+  val tickSequence =
+      loadTicks(
+          mapOf(
+              Path("transformed_data/static_data_Town01.zip") to
+                  listOf(Path("transformed_data/dynamic_data_recording_seed_0.zip"))),
+          useEveryVehicleAsEgo = true)
+
+  val ticks = tickSequence.toList().map { it.toList() }
+  val s = ""
 }

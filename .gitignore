@@ -43,3 +43,5 @@ out/
 .project
 .settings/
 bin/
+
+analysis-result-logs
