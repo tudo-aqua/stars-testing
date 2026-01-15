@@ -62,5 +62,5 @@ fun main() {
                   listOf(Path("transformed_data/dynamic_data_recording_seed_0.zip"))),
           useEveryVehicleAsEgo = true)
 
-  evaluation.runEvaluation(tickSequence)
+  val ticksList = tickSequence.toList().map { it.toList() }
 }
