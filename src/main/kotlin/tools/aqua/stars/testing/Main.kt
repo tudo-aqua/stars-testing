@@ -21,6 +21,7 @@ import kotlin.io.path.Path
 import tools.aqua.stars.core.evaluation.TSCEvaluation
 import tools.aqua.stars.core.metrics.evaluation.InvalidTSCInstancesPerTSCMetric
 import tools.aqua.stars.core.metrics.evaluation.MissedTSCInstancesPerTSCMetric
+import tools.aqua.stars.core.metrics.evaluation.TickCountMetric
 import tools.aqua.stars.core.metrics.evaluation.ValidTSCInstancesPerTSCMetric
 import tools.aqua.stars.core.tsc.builder.*
 import tools.aqua.stars.data.av.dataclasses.*
@@ -48,19 +49,18 @@ fun main() {
           )
           .apply {
             registerMetricProviders(
-                ValidTSCInstancesPerTSCMetric<
-                    Actor, TickData, TickDataUnitSeconds, TickDataDifferenceSeconds>(),
+                ValidTSCInstancesPerTSCMetric(),
                 InvalidTSCInstancesPerTSCMetric(),
-                MissedTSCInstancesPerTSCMetric())
+                MissedTSCInstancesPerTSCMetric(),
+                TickCountMetric())
           }
 
   val tickSequence =
       loadTicks(
           mapOf(
-              Path("transformed_data/static_data_Town01.zip") to
+              Path("transformed_data/static_data_Town10HD.zip") to
                   listOf(Path("transformed_data/dynamic_data_recording_seed_0.zip"))),
           useEveryVehicleAsEgo = true)
 
-  val ticks = tickSequence.toList().map { it.toList() }
-  val s = ""
+  evaluation.runEvaluation(tickSequence)
 }
