@@ -45,3 +45,5 @@ out/
 bin/
 
 analysis-result-logs
+!transformed_data/dynamic_data_recording_seed_0.zip
+!transformed_data/static_data_Town10HD.zip
